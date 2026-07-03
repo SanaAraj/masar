@@ -1,0 +1,21 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+.pytest_cache/
+.ruff_cache/
+
+# Virtual environments
+.venv/
+venv/
+
+# Secrets
+.env
+
+# OS / editor
+.DS_Store
+
+# Milestone report (working notes, not part of the deliverable)
+REPORT-MASAR-M1.md
