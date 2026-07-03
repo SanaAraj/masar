@@ -1,0 +1,14 @@
+services:
+  masar:
+    build: .
+    image: masar:0.1.0
+    ports:
+      - "8000:8000"
+    environment:
+      # Which routing table to load inside the container.
+      MASAR_CONFIG: configs/routing.v0.yaml
+    # Real provider keys (for the openai backend) are read from the environment
+    # by the name given in the routing config. Provide them by creating a .env
+    # file and uncommenting the line below; the mock backend needs no keys.
+    # env_file: [.env]
+    restart: unless-stopped

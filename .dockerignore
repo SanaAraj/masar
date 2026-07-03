@@ -1,0 +1,15 @@
+.git
+.github
+.venv
+venv
+__pycache__
+*.py[cod]
+.pytest_cache
+.ruff_cache
+tests
+.env
+.DS_Store
+REPORT-MASAR-M1.md
+*.egg-info
+dist
+build
