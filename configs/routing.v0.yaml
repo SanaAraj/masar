@@ -1,0 +1,81 @@
+# masar routing table — HEURISTIC v0, PENDING mizan M2 DATA
+# =============================================================================
+# This table encodes OPERATIONAL heuristics only: data sensitivity, language,
+# and cost intent. It does NOT yet encode measured model capability. No route
+# below references a capability score, because no mizan-evals capability results
+# exist for these models yet. Capability-aware routing lands in Milestone 2,
+# when this table is replaced with one derived from mizan measurements.
+#
+# Rule: never add a capability, cost, or latency number here that did not come
+# from a real, dated measurement. The active models below are mocks priced at
+# 0.0 (their cost is truthfully zero); real prices must be sourced and dated in
+# `cost_source` before a real model is activated.
+# =============================================================================
+
+version: 0
+label: "heuristic v0 — pending mizan M2 data"
+
+# ---- Model registry ---------------------------------------------------------
+# `sovereign: true` marks a model as sovereign-hosted. Keys live in the
+# environment, named here by variable; they are never written into this file.
+models:
+  - name: mock-sovereign
+    backend: mock
+    model_id: mock-sovereign-1
+    sovereign: true
+    cost_per_1k_input_usd: 0.0
+    cost_per_1k_output_usd: 0.0
+
+  - name: mock-frontier
+    backend: mock
+    model_id: mock-frontier-1
+    sovereign: false
+    cost_per_1k_input_usd: 0.0
+    cost_per_1k_output_usd: 0.0
+
+  # Example real model, inactive until keys and sourced prices exist. Uncomment,
+  # set OPENAI_API_KEY, and fill costs from the provider's dated price page.
+  # - name: gpt-frontier
+  #   backend: openai
+  #   model_id: gpt-5.5-2026-04-23
+  #   base_url_env: OPENAI_BASE_URL
+  #   api_key_env: OPENAI_API_KEY
+  #   sovereign: false
+  #   cost_per_1k_input_usd: 0.0   # <- replace with sourced, dated price
+  #   cost_per_1k_output_usd: 0.0  # <- replace with sourced, dated price
+
+# ---- Defaults applied to every route unless overridden ----------------------
+defaults:
+  timeout_seconds: 30.0
+  retries: 1 # attempts per model = retries + 1
+
+# ---- Routes (evaluated top-to-bottom; first match wins) ---------------------
+routes:
+  # Sensitive traffic must stay sovereign-hosted. A `sovereign: true` route is
+  # validated at startup to only reference sovereign models (primary + all
+  # fallbacks), so this invariant cannot be broken by a config edit.
+  - name: sovereign-any
+    match: { sensitivity: sovereign, language: "*", task: "*" }
+    sovereign: true
+    primary: mock-sovereign
+    fallbacks: [] # only sovereign models allowed here; none other configured yet
+
+  # Standard Arabic traffic. Heuristic-only: prefers the frontier model, keeps
+  # the sovereign model as a fallback. When mizan M2 lands, dialect- and
+  # capability-aware variants replace this rule.
+  - name: arabic-standard
+    match: { sensitivity: standard, language: ar, task: "*" }
+    primary: mock-frontier
+    fallbacks: [mock-sovereign]
+    timeout_seconds: 20.0
+
+  # Catch-all (required). Everything else.
+  - name: default
+    match: { sensitivity: "*", language: "*", task: "*" }
+    primary: mock-frontier
+    fallbacks: [mock-sovereign]
+
+# ---- Cost provenance --------------------------------------------------------
+# Documents where non-zero prices came from. Empty of real prices in v0 because
+# only mock models (cost 0) are active. Never invent prices.
+cost_source: "mock models only (cost 0); real prices pending — will cite dated provider price pages"
