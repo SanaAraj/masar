@@ -38,7 +38,8 @@ active models are mocks priced at `$0.00`, so all reported cost is truthfully
 zero. See [Evaluation methodology](#evaluation-methodology).
 
 **Routing behaviour (M1, reproducible)** - the concrete thing M1 delivers, each
-row asserted by the test suite and reproducible with the quickstart `curl`:
+row asserted by [`tests/test_api.py`](tests/test_api.py) and reproducible with
+the quickstart `curl`:
 
 | Example request | Classified as | Route | Served by |
 |---|---|---|---|
@@ -76,10 +77,10 @@ uv venv && uv pip install -e ".[dev]"
 
 cp .env.example .env          # the mock backend needs no keys
 
-pytest                        # 103 tests, offline
+uv run pytest                 # full suite runs offline
 
 # Start the gateway (mock backend, default heuristic v0 table)
-uvicorn masar.app:create_app --factory --port 8000
+uv run uvicorn masar.app:create_app --factory --port 8000
 ```
 
 Or with Docker:
