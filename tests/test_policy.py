@@ -12,7 +12,7 @@ from masar.policy.engine import PolicyEngine, PolicyError, ResolvedRoute
 def _engine() -> PolicyEngine:
     config = RoutingConfig.model_validate(
         {
-            "label": "heuristic v0 — pending mizan M2 data",
+            "label": "heuristic v0 - pending mizan M2 data",
             "defaults": {"timeout_seconds": 30.0, "retries": 1},
             "models": [
                 {"name": "mock-sovereign", "model_id": "mock-sov", "sovereign": True},

@@ -13,7 +13,7 @@ def _base_config() -> dict:
     """A minimal valid routing table as a plain dict, ready to be mutated."""
     return {
         "version": 0,
-        "label": "heuristic v0 — pending mizan M2 data",
+        "label": "heuristic v0 - pending mizan M2 data",
         "models": [
             {
                 "name": "mock-sovereign",

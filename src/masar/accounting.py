@@ -3,7 +3,7 @@
 ``estimate_cost`` turns token usage into a USD figure from a model's configured
 per-1k prices. :class:`StatsStore` aggregates per-request accounting keyed by
 ``(route, model)`` behind a lock, since sync FastAPI handlers run in a thread
-pool. Persistence is out of scope for M1 (stats reset on restart) — see the
+pool. Persistence is out of scope for M1 (stats reset on restart) - see the
 roadmap.
 
 Cost is only as trustworthy as the prices in the config. The mock backend is

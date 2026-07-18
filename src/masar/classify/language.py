@@ -9,7 +9,7 @@ The dialect signal is a small, transparent Gulf-marker lexicon. It is recorded
 for observability but is deliberately **not** a routing dimension in this
 milestone: dialect-aware routing needs measured capability data (mizan-evals M2).
 Absence of a Gulf marker yields a labelled ``msa-default``, not a positive MSA
-detection — see the README limitations.
+detection - see the README limitations.
 """
 
 from __future__ import annotations

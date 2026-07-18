@@ -39,7 +39,7 @@ class _AlwaysFail(Backend):
 
 _CONFIG = {
     "version": 0,
-    "label": "heuristic v0 — pending mizan M2 data",
+    "label": "heuristic v0 - pending mizan M2 data",
     "cost_source": "mock models only (cost 0)",
     "models": [
         {"name": "mock-sovereign", "backend": "mock", "model_id": "mock-sov-1", "sovereign": True},
@@ -143,7 +143,7 @@ def test_stats_reflect_traffic(client: TestClient) -> None:
     client.post("/v1/chat/completions", json={"messages": [{"role": "user", "content": "hello"}]})
     client.post("/v1/chat/completions", json={"messages": [{"role": "user", "content": "hola"}]})
     stats = client.get("/stats").json()
-    assert stats["routing_label"] == "heuristic v0 — pending mizan M2 data"
+    assert stats["routing_label"] == "heuristic v0 - pending mizan M2 data"
     assert stats["cost_source"] == "mock models only (cost 0)"
     assert stats["totals"]["requests"] == 2
     assert stats["totals"]["cost_usd"] == 0.0

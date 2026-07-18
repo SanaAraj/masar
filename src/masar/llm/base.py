@@ -28,7 +28,7 @@ class BackendTimeout(BackendError):
 def approx_token_count(text: str) -> int:
     """A deliberately simple, language-agnostic token estimate.
 
-    Whitespace-delimited word count — not a real BPE tokenizer. It is used by the
+    Whitespace-delimited word count - not a real BPE tokenizer. It is used by the
     mock backend and as a fallback when a provider omits usage data; any cost
     derived from it is flagged as estimated so tables never imply false precision.
     """

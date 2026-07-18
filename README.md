@@ -7,13 +7,13 @@ that routes each request by data sensitivity, language, and task type.
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Python 3.11+](https://img.shields.io/badge/python-3.11%2B-blue.svg)](pyproject.toml)
 
-> _masār_ (مسار) — "path" / "route". The gateway picks the path each request takes.
+> _masār_ (مسار) - "path" / "route". The gateway picks the path each request takes.
 
-> **Routing status: heuristic v0 — pending mizan M2 data.** masar routes on
+> **Routing status: heuristic v0 - pending mizan M2 data.** masar routes on
 > operational rules (sensitivity, language, cost) today. It does **not** yet
 > route on measured model capability: no capability score exists in this
 > repository until [mizan-evals](https://github.com/SanaAraj/mizan-evals) results
-> land. The portfolio story is the interlock — **mizan measures, masar routes on
+> land. The portfolio story is the interlock - **mizan measures, masar routes on
 > the measurements.**
 
 ## Why this exists
@@ -21,23 +21,23 @@ that routes each request by data sensitivity, language, and task type.
 Teams serving Arabic and English traffic need to send sensitive requests to
 sovereign-hosted models, keep cheap requests off expensive models, and do both
 without rewriting clients. masar sits in front as an OpenAI-compatible gateway
-and makes that decision per request — from data sensitivity and language now,
+and makes that decision per request - from data sensitivity and language now,
 and from measured capability once mizan-evals data exists. The point is that the
 routing table is grounded in measurement rather than vibes.
 
 ## Results
 
-**Headline capability/cost table — Milestone 2 (gated on mizan-evals results):**
+**Headline capability/cost table - Milestone 2 (gated on mizan-evals results):**
 
 | Model set | Quality retained vs frontier | Cost vs frontier | Source |
 |---|---|---|---|
-| _TBD — pending mizan M2_ | TBD | TBD | mizan-evals run against masar |
+| _TBD - pending mizan M2_ | TBD | TBD | mizan-evals run against masar |
 
 No capability, cost, or latency numbers are published in M1 by design; the only
 active models are mocks priced at `$0.00`, so all reported cost is truthfully
 zero. See [Evaluation methodology](#evaluation-methodology).
 
-**Routing behaviour (M1, reproducible)** — the concrete thing M1 delivers, each
+**Routing behaviour (M1, reproducible)** - the concrete thing M1 delivers, each
 row asserted by the test suite and reproducible with the quickstart `curl`:
 
 | Example request | Classified as | Route | Served by |
@@ -126,7 +126,7 @@ x-masar-classification: standard/en/chat
 
 ```console
 $ curl -s http://localhost:8000/stats
-{"routing_label":"heuristic v0 — pending mizan M2 data",
+{"routing_label":"heuristic v0 - pending mizan M2 data",
  "cost_source":"mock models only (cost 0); ...",
  "totals":{"requests":1,"errors":0,"prompt_tokens":3,"completion_tokens":2,"cost_usd":0.0},
  "by_route_model":[{"route":"sovereign-any","model":"mock-sovereign","requests":1, ...}]}
@@ -150,15 +150,15 @@ the *routing logic*, by the committed test suite:
 - an end-to-end gateway test through the mock backend.
 
 **M2 (gated on mizan-evals)** produces the headline table. Capability scores come
-from [mizan-evals](https://github.com/SanaAraj/mizan-evals) runs — cached to
-disk, seeded, and logged with model ids and dates — and the "quality retained
+from [mizan-evals](https://github.com/SanaAraj/mizan-evals) runs - cached to
+disk, seeded, and logged with model ids and dates - and the "quality retained
 vs cost" figures are produced by running mizan against masar itself. Until those
-results exist, the routing table stays labelled `heuristic v0 — pending mizan M2
+results exist, the routing table stays labelled `heuristic v0 - pending mizan M2
 data` in code, config, and this README, and no capability number is invented.
 
 ## Limitations
 
-Honest and specific — this section is the point:
+Honest and specific - this section is the point:
 
 - **Routing is heuristic, not capability-driven.** No route reflects measured
   model quality until mizan M2 data lands.
@@ -170,7 +170,7 @@ Honest and specific — this section is the point:
   modes exist.
 - **Dialect is a soft signal only.** A small Gulf-marker lexicon matched as whole
   words; it misses clitic-prefixed forms (`والحين`) and reports a *labelled*
-  `msa-default` when no marker fires — not a positive MSA detection. Dialect is
+  `msa-default` when no marker fires - not a positive MSA detection. Dialect is
   logged but does **not** affect routing in M1.
 - **Language detection is script-based.** Mixed Arabic/English is treated as
   Arabic.
@@ -195,4 +195,4 @@ Honest and specific — this section is the point:
 
 ## License
 
-MIT — see [LICENSE](LICENSE).
+MIT - see [LICENSE](LICENSE).

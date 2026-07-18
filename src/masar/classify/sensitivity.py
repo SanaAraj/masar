@@ -5,7 +5,7 @@ explicit-confidential signal fires, and ``STANDARD`` otherwise. The design
 choice here is precision over recall: transparent regular expressions with a
 Luhn check on card candidates, so the router under-flags rather than misroutes
 ordinary traffic. Every rule that fires is reported as a signal so a decision
-can be explained. This is not a named-entity model — see the README limitations.
+can be explained. This is not a named-entity model - see the README limitations.
 """
 
 from __future__ import annotations

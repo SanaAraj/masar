@@ -1,4 +1,4 @@
-# masar routing table — HEURISTIC v0, PENDING mizan M2 DATA
+# masar routing table - HEURISTIC v0, PENDING mizan M2 DATA
 # =============================================================================
 # This table encodes OPERATIONAL heuristics only: data sensitivity, language,
 # and cost intent. It does NOT yet encode measured model capability. No route
@@ -13,7 +13,7 @@
 # =============================================================================
 
 version: 0
-label: "heuristic v0 — pending mizan M2 data"
+label: "heuristic v0 - pending mizan M2 data"
 
 # ---- Model registry ---------------------------------------------------------
 # `sovereign: true` marks a model as sovereign-hosted. Keys live in the
@@ -78,4 +78,4 @@ routes:
 # ---- Cost provenance --------------------------------------------------------
 # Documents where non-zero prices came from. Empty of real prices in v0 because
 # only mock models (cost 0) are active. Never invent prices.
-cost_source: "mock models only (cost 0); real prices pending — will cite dated provider price pages"
+cost_source: "mock models only (cost 0); real prices pending - will cite dated provider price pages"

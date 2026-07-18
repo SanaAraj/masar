@@ -42,7 +42,7 @@ def test_unknown_backend_is_rejected_defensively() -> None:
 def test_build_backends_maps_names() -> None:
     config = RoutingConfig.model_validate(
         {
-            "label": "heuristic v0 — pending mizan M2 data",
+            "label": "heuristic v0 - pending mizan M2 data",
             "models": [
                 {"name": "a", "backend": "mock", "model_id": "mock-a", "sovereign": True},
                 {"name": "b", "backend": "mock", "model_id": "mock-b"},
